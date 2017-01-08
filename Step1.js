@@ -33,4 +33,4 @@ _.each(iceCreamChoices, function(ic) {
   })
 })
 
-console.log('***', allChoices);
+ console.log('***', allChoices);
