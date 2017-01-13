@@ -9,7 +9,7 @@ db.allDocs({
     .then(docs => {
         _.each(docs.rows, r => {
             r.doc.taste = palatability();
-            console.log(r.doc.choice, r.doc.taste)
+            db.put(r.doc);
         });
     });
 
