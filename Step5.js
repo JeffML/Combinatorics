@@ -1,21 +1,15 @@
-var _ = require('lodash');
+const _ = require('lodash');
+const hash = require('./hash');
 
-var PouchDB = require('pouchdb');
-var db = new PouchDB('choices');
+const PouchDB = require('pouchdb');
+const db = new PouchDB('choices');
 
-var crypto = require('crypto');
-const hmac =
-
-    db.allDocs({
+db.allDocs({
         include_docs: true
     })
     .then(docs => {
         _.each(docs.rows, r => {
-            var str = _.flatten(r.doc.choice)
-                .join('');
-            r.doc.key = crypto.createHmac('sha256', 'old ice cream')
-                .update(str)
-                .digest('hex');
+            r.doc.key = hash(r.doc.choice);
             db.put(r.doc);
         });
     })

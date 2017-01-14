@@ -1,8 +1,16 @@
 const crypto = require('crypto');
+const _ = require('lodash')
 
-var hmac = crypto.createHmac('sha256', "old ice cream");
+function hash(choice) {
+    var str = _.chain(choice)
+        .flatten()
+        .sortBy()
+        .join('|')
+        .value();
 
-var hash = hmac.update('do re me fa')
-    .digest('hex');
+    return crypto.createHmac('sha256', 'old ice cream')
+        .update(str)
+        .digest('hex');
+}
 
-console.log(`hash = ${hash}, ${hash.length}`)
+module.exports = hash;
