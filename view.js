@@ -18,6 +18,9 @@ db.get(ddoc._id)
     .then(doc => {
         return db.remove(doc);
     })
+    .catch(() => {
+        console.warn('no view to delete');
+    })
     .then(() => {
         db.put(ddoc)
             .catch(function (err) {

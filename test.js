@@ -28,12 +28,14 @@ function test() {
         [['STRAWBERRY', 'VANILLA'], ['pineapple', 'coconut flakes'], ['marshmallow']],
         [['STRAWBERRY'], ['pecans'], ['maple']],
         [['VANILLA'], ['coconut flakes', 'pineapple'], ['chocolate']],
-        [['CHOCOLATE, STRAWBERRY'], ['pineapple', 'pecans'], ['butterscotch']],
+        [['CHOCOLATE', 'STRAWBERRY'], ['pineapple', 'pecans'], ['butterscotch']]
     ];
 
     const keys = _.map(choices, c => {
         return hash(c);
     });
+
+    // console.log("keys = ", keys);
 
     db.query('choice/by_key', {
         keys: keys,
