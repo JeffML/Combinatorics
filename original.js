@@ -1,12 +1,12 @@
 var _ = require('lodash');
 
 var PouchDB = require('pouchdb');
-var db = new PouchDB('choices');
+var db = new PouchDB('choices2');
 var Combinator = require('./combinator');
 
 // remove old
 db.destroy(null, function () {
-    db = new PouchDB('choices');
+    db = new PouchDB('choices2');
     run();
 });
 
